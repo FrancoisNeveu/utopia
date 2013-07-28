@@ -25,7 +25,7 @@ $app = new \Slim\Slim(array(
 
 $app->contentType('application/json');
 $app->expires('-1000000');
-$db = new PDO('sqlite:utopia_db.sqlite3');
+//$db = new PDO('sqlite:utopia_db.sqlite3');
 
 $app->configureMode('production', function () use ($app) {
 	$app->config(array(

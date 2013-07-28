@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="utopia">
 	<head>
 		<meta charset="utf-8"/>
-			<title>Slim Framework Documentation</title>
-			<script src="/assets/angular-1.1.5/angular.js" type="text/javascript"></script>
-			<script src="/js/app.js"  type="text/javascript"></script>
-			<script src="/js/home.js" type ="text/javascript"></script> 
-			<link rel="stylesheet" href="/styles/utopia.css"/>
+		<title>Utopia</title>
+		<link rel="stylesheet" href="/styles/utopia.css"/>
 	</head>
 	<body>
-		<div id="content" ng-app="utopia" ng-controller="HomeController">
-			<input type='text' ng-model="inputValue" />
-				{{inputValue}}
+		<div ng-view>
 		</div>
+		
+		<div>Angular seed app: V<span app-version></span>
+		</div>
+		
+		<script src="/assets/angular-1.1.5/angular.js" type="text/javascript"></script>
+		<script src="/js/app.js" type="text/javascript"></script>
+		<script src="/js/services.js" type="text/javascript"></script>
+		<script src="/js/controllers.js" type="text/javascript"></script>
+		<script src="/js/filters.js" type="text/javascript"></script>
+		<script src="/js/directives.js" type="text/javascript"></script>
 	</body>
 </html>
