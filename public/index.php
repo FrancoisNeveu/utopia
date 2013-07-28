@@ -14,7 +14,7 @@
  *	Resgister PSR-0 AutoLoader
  */
 
-require 'Slim/Slim.php';
+require '../Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -35,7 +35,7 @@ $app->get(
     '/',
     function () {
         $response_body = 'response'; 
-        echo $template;
+        echo $response_body;
     }
 );
 
