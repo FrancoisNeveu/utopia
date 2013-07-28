@@ -22,7 +22,27 @@ require '../Slim/Slim.php';
  * Instantiate a Slim application
  */
 
-$app = new \Slim\Slim();
+$app = new \Slim\Slim(array(
+		'mode' => 'development'
+	));
+
+$app->setName('utopia');
+
+// Only invoked if mode is "production"
+$app->configureMode('production', function () use ($app) {
+	$app->config(array(
+		'log.enable' => true,
+		'debug' => false
+		));
+	});
+
+// Only invoked if mode is "development"
+$app->configureMode('development', function () use ($app) {
+	$app->config(array(
+		'log.enable' => false,
+		'debug' => true
+		));
+	});
 
 /**
  * Define the Slim application routes
@@ -69,9 +89,7 @@ $app->delete(
 );
 
 /**
- * Step 4: Run the Slim application
- *
- * This method should be called last. This executes the Slim application
- * and returns the HTTP response to the HTTP client.
+ *  Run the Slim application
  */
+
 $app->run();
