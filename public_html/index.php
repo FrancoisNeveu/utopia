@@ -18,17 +18,15 @@ require '../Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
-/**
- * Instantiate a Slim application
- */
-
 $app = new \Slim\Slim(array(
-		'mode' => 'development'
+		'mode' => 'development',
+		'name' => 'utopia',
 	));
 
-$app->setName('utopia');
+$app->contentType('application/json');
+$app->expires('-1000000');
+$db = new PDO('sqlite:utopia_db.sqlite3');
 
-// Only invoked if mode is "production"
 $app->configureMode('production', function () use ($app) {
 	$app->config(array(
 		'log.enable' => true,
@@ -36,7 +34,6 @@ $app->configureMode('production', function () use ($app) {
 		));
 	});
 
-// Only invoked if mode is "development"
 $app->configureMode('development', function () use ($app) {
 	$app->config(array(
 		'log.enable' => false,
@@ -45,48 +42,11 @@ $app->configureMode('development', function () use ($app) {
 	});
 
 /**
- * Define the Slim application routes
- * argument for `Slim::get`, `Slim::post`, `Slim::put`, `Slim::patch`, and `Slim::delete`
- * is an anonymous function.
+ * Then we require all the routes we need in external folder gor better
+ * organization.
  */
 
-// GET route
-$app->get(
-    '/',
-    function () {
-        $response_body = 'response'; 
-        echo $response_body;
-    }
-);
-
-// POST route
-$app->post(
-    '/post',
-    function () {
-        echo 'This is a POST route';
-    }
-);
-
-// PUT route
-$app->put(
-    '/put',
-    function () {
-        echo 'This is a PUT route';
-    }
-);
-
-// PATCH route
-$app->patch('/patch', function () {
-    echo 'This is a PATCH route';
-});
-
-// DELETE route
-$app->delete(
-    '/delete',
-    function () {
-        echo 'This is a DELETE route';
-    }
-);
+ require '../api/routes/index.php';
 
 /**
  *  Run the Slim application
