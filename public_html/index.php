@@ -25,7 +25,20 @@ $app = new \Slim\Slim(array(
 
 $app->contentType('application/json');
 $app->expires('-1000000');
-$db = new PDO('sqlite:../DB/utopia_db.sqlite3');
+
+/**
+ * init Database
+ */
+try 
+{
+	$db = new PDO('sqlite:../DB/utopia_db.sqlite3');
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(Exception $e)
+{
+	echo 'Erreur : '.$e->getMessage().'<br />';
+	echo 'N° : '.$e->getCode();
+}
 
 $app->configureMode('production', function () use ($app) {
 	$app->config(array(
