@@ -1,5 +1,4 @@
-BEGIN TRANSACTION;
-CREATE TABLE sqlite_sequence(name,seq);
+DROP TABLE IF EXISTS "user";
 CREATE TABLE user (
     "id" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
@@ -7,4 +6,4 @@ CREATE TABLE user (
     "surname" TEXT,
     "token" TEXT
 );
-COMMIT;
+INSERT INTO "user" VALUES(1,'neveu','slackos@gmail.com','francois','ddefeoi879"dhnkjhd786');
